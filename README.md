@@ -23,11 +23,16 @@ $ docker-compose exec php composer install
 $ docker-compose exec php bin/console d:m:m
 ```
 
+5. Run Lexik command:
+```bash
+$ docker-compose exec php bin/console lexik:jwt:generate-keypair
+```
+
 ## Create User
 
 1. Connect Mysql Container:
 ```bash
-docker exec -it mysql mysql -u root -p
+$ docker-compose exec mysql mysql -u root -p
 ## RootPassword "root"
 ```
 
@@ -53,7 +58,7 @@ You can use it using the [Postman Collection](.doc/PATH.postman_collection.json)
 
 1. Generating Tokens And Logging In:
 ```bash
-curl --location -g --request POST '{{api}}/api/login' \
+$ curl --location -g --request POST '{{api}}/api/login' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "username":"provider_one@example.com",
@@ -86,7 +91,7 @@ Example Create Order Schema:
 
 Example Request:
 ```bash
-curl --location -g --request PUT '{{api}}/api/order' \
+$ curl --location -g --request PUT '{{api}}/api/order' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NDU5NzU2NTgsImV4cCI6MTY0NTk3OTI1OCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicHJvdmlkZXJfdGhyZWVAZXhhbXBsZS5jb20ifQ.hBm5erLDAcZJ0s5NxuG0jr03-h-s9AoMBFBczB6pQEK9KwT2hK-lPPHGcv2nbqi0lLoFg-Gz3ebHu1HLW13PWMB6VrzbbkEvHC4NGq30IHGPF643jh5wmNUBD8-zImwdYfP7bkrrtE3_-TroSFaiwws0kkqU28gHuAm0F2yxi6MU0Cr2toiiW1gLkjzc3XsqCQAISLaT3GdzA1HlSxuh1fmxNzRIY9yf6wzB1c9nMDbYbHBRYUsa9NxyFX9JH4XZjm-ovzKkiWxmKnUvG8k_i8yZm6je2RLAM-Vq9sNacYOfr95NDiZnHH66VhgagiiMxfR-mAcXBzWwZCwVrbNyBw' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -113,7 +118,7 @@ Example Update Order Schema:
 
 Example Request:
 ```bash
-curl --location -g --request PATCH '{{api}}/api/order' \
+$ curl --location -g --request PATCH '{{api}}/api/order' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NDU5NzU2NTgsImV4cCI6MTY0NTk3OTI1OCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicHJvdmlkZXJfdGhyZWVAZXhhbXBsZS5jb20ifQ.hBm5erLDAcZJ0s5NxuG0jr03-h-s9AoMBFBczB6pQEK9KwT2hK-lPPHGcv2nbqi0lLoFg-Gz3ebHu1HLW13PWMB6VrzbbkEvHC4NGq30IHGPF643jh5wmNUBD8-zImwdYfP7bkrrtE3_-TroSFaiwws0kkqU28gHuAm0F2yxi6MU0Cr2toiiW1gLkjzc3XsqCQAISLaT3GdzA1HlSxuh1fmxNzRIY9yf6wzB1c9nMDbYbHBRYUsa9NxyFX9JH4XZjm-ovzKkiWxmKnUvG8k_i8yZm6je2RLAM-Vq9sNacYOfr95NDiZnHH66VhgagiiMxfR-mAcXBzWwZCwVrbNyBw' \
 --header 'Content-Type: application/json' \
 --data-raw '{
@@ -129,12 +134,12 @@ To get an order or all orders, you need to add the web token you received from t
 
 Example Request For A Order:
 ```bash
-curl --location -g --request GET '{{api}}/api/getOrder?orderId=11' \
+$ curl --location -g --request GET '{{api}}/api/getOrder?orderId=11' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NDU5NzU2NTgsImV4cCI6MTY0NTk3OTI1OCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicHJvdmlkZXJfdGhyZWVAZXhhbXBsZS5jb20ifQ.hBm5erLDAcZJ0s5NxuG0jr03-h-s9AoMBFBczB6pQEK9KwT2hK-lPPHGcv2nbqi0lLoFg-Gz3ebHu1HLW13PWMB6VrzbbkEvHC4NGq30IHGPF643jh5wmNUBD8-zImwdYfP7bkrrtE3_-TroSFaiwws0kkqU28gHuAm0F2yxi6MU0Cr2toiiW1gLkjzc3XsqCQAISLaT3GdzA1HlSxuh1fmxNzRIY9yf6wzB1c9nMDbYbHBRYUsa9NxyFX9JH4XZjm-ovzKkiWxmKnUvG8k_i8yZm6je2RLAM-Vq9sNacYOfr95NDiZnHH66VhgagiiMxfR-mAcXBzWwZCwVrbNyBw'
 ```
 
 Example Request For All Orders
 ```bash
-curl --location -g --request GET '{{api}}/api/getOrders' \
+$ curl --location -g --request GET '{{api}}/api/getOrders' \
 --header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NDU5NzU2NTgsImV4cCI6MTY0NTk3OTI1OCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicHJvdmlkZXJfdGhyZWVAZXhhbXBsZS5jb20ifQ.hBm5erLDAcZJ0s5NxuG0jr03-h-s9AoMBFBczB6pQEK9KwT2hK-lPPHGcv2nbqi0lLoFg-Gz3ebHu1HLW13PWMB6VrzbbkEvHC4NGq30IHGPF643jh5wmNUBD8-zImwdYfP7bkrrtE3_-TroSFaiwws0kkqU28gHuAm0F2yxi6MU0Cr2toiiW1gLkjzc3XsqCQAISLaT3GdzA1HlSxuh1fmxNzRIY9yf6wzB1c9nMDbYbHBRYUsa9NxyFX9JH4XZjm-ovzKkiWxmKnUvG8k_i8yZm6je2RLAM-Vq9sNacYOfr95NDiZnHH66VhgagiiMxfR-mAcXBzWwZCwVrbNyBw'
 ```
